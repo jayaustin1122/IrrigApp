@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">AquaSense</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="serverkeyfcm">AAAAKDLWZfs:APA91bGX7UNF2PXH-iwIWaQqBsJlaNtYMrPpwFcRtC2rf6XE1Y2EJUmQHaJBFt0VScmHTBXGUbC9w4zhtyefV9lvSmv_cQUWI5A1iuCXsfa7ArX5FyNEgFO7NDkzqOaPp560SJujGfy-</string>
+</resources>

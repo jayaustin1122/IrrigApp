@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/progress">
+        <clip>
+            <vector xmlns:android="http://schemas.android.com/apk/res/android"
+                android:width="200dp"
+                android:height="200dp"
+                android:viewportWidth="200"
+                android:viewportHeight="200">
+
+                <path
+                    android:strokeWidth="2"
+                    android:fillColor="@color/mainColor"
+                    android:strokeColor="@color/black"
+                    android:pathData="M0,50 C0,77.6 22.4,100 50,100 C73.6,100 85,89 150,50 C85,11 73.6,0 50,0 C22.4,0 0,22.4 0,50 Z"/>
+
+                <path
+                    android:strokeWidth="2"
+                    android:pathData="M10,50 Q40,60 100,50 Q40,40 10,50 Z"/>
+            </vector>
+        </clip>
+    </item>
+
+    <item android:id="@android:id/background">
+        <vector xmlns:android="http://schemas.android.com/apk/res/android"
+            android:width="200dp"
+            android:height="200dp"
+            android:viewportWidth="200"
+            android:viewportHeight="200">
+
+            <path
+                android:strokeWidth="2"
+                android:strokeColor="@color/black"
+                android:pathData="M0,50 C0,77.6 22.4,100 50,100 C73.6,100 85,89 150,50 C85,11 73.6,0 50,0 C22.4,0 0,22.4 0,50 Z"/>
+
+            <path
+                android:strokeWidth="2"
+                android:pathData="M10,50 Q40,60 100,50 Q40,40 10,50 Z"/>
+        </vector>
+    </item>
+</layer-list>

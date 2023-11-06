@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "172651603451",
+    "project_id": "irrig-96119",
+    "storage_bucket": "irrig-96119.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172651603451:android:c1839a49a81e1bed7ad75e",
+        "android_client_info": {
+          "package_name": "com.example.iriggattion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOp9oWswyTwmZasKjuTm_NPhsC4r38b5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
