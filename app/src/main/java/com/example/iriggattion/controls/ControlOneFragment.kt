@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +15,10 @@ import android.view.ViewGroup
 import com.example.iriggattion.R
 import com.example.iriggattion.databinding.FragmentControlOneBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class ControlOneFragment : Fragment() {
     private lateinit var binding: FragmentControlOneBinding
@@ -37,6 +42,7 @@ class ControlOneFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
+        startStatusChecking()
         sharedPreferences = requireActivity().getSharedPreferences("ButtonState", Context.MODE_PRIVATE)
         val savedState = sharedPreferences.getBoolean("isButtonOn", false)
         binding.btnPump.setBackgroundColor(if (savedState) R.color.mainColor else R.color.textColor)
@@ -78,6 +84,51 @@ class ControlOneFragment : Fragment() {
                 }
             }
         }
+    }
+    private val handler = Handler(Looper.getMainLooper())
+
+    private val statusListener = object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            val status = dataSnapshot.value.toString()
+            if (status == "Manual") {
+                // Enable the button
+                binding.btnPump.isEnabled = true
+            } else if (status == "Automatic") {
+                // Disable the button
+                binding.btnPump.isEnabled = false
+            }
+        }
+
+        override fun onCancelled(databaseError: DatabaseError) {
+
+        }
+    }
+
+    private val statusChecker = object : Runnable {
+        override fun run() {
+            val statusRef = database.getReference("State")
+            statusRef.addListenerForSingleValueEvent(statusListener)
+
+            // Schedule the next run after 1 second
+            handler.postDelayed(this, 1000)
+        }
+    }
+
+    private fun startStatusChecking() {
+        handler.post(statusChecker)
+    }
+
+    private fun stopStatusChecking() {
+        handler.removeCallbacks(statusChecker)
+    }
+
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        // Stop status checking when the view is destroyed
+        stopStatusChecking()
     }
 }
 

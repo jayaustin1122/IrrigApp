@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.iriggattion.R
 import com.example.iriggattion.adapter.ViewPagerAdapter
 import com.example.iriggattion.databinding.FragmentHomeBinding
@@ -166,6 +167,10 @@ class HomeFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
                 val color = when {
                     waterLevel >= 511 -> {
+                        binding.waterLevelStatus.setText("High")
+                        Glide.with(requireContext())
+                            .load(R.drawable.alert_img)
+                            .into(binding.imgOnOff1)
                         writeToFirebase("Irrigation Water level at High!",waterLevel)
                         requestSmsPermission()
                         // Send the notification
@@ -177,14 +182,19 @@ class HomeFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                         }
                         Color.RED
 
+
                     }
                     waterLevel in 390..510 -> {
+                        binding.waterLevelStatus.setText("Medium")
                         writeToFirebase("Irrigation Gate Half Opened", waterLevel)
                         Color.parseColor("#FFA500") // Orange
+
                     }
                     else -> {
+                        binding.waterLevelStatus.setText("Normal")
                         writeToFirebase("Irrigation Gate Normal", waterLevel)
                         Color.GREEN
+
                     }
                 }
 

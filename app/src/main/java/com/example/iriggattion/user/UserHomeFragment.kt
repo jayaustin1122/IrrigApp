@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.iriggattion.R
 import com.example.iriggattion.adapter.ViewPagerAdapter
 import com.example.iriggattion.admin.ContactsRegisteredFragment
@@ -112,13 +113,19 @@ class UserHomeFragment : Fragment() {
                 binding.waterlevelLabel.text = waterLevel.toString()
 
                 val color = when {
-                    waterLevel >= 80 -> {
+                    waterLevel >= 511 -> {
+                        Glide.with(requireContext())
+                            .load(R.drawable.alert_img)
+                            .into(binding.imgOnOff1)
+                        binding.waterLevelStatus.setText("High")
                         Color.RED
                     }
-                    waterLevel in 50..79 -> {
+                    waterLevel in  390..510 -> {
+                        binding.waterLevelStatus.setText("Medium")
                         Color.parseColor("#FFA500") // Orange
                     }
                     else -> {
+                        binding.waterLevelStatus.setText("Normal")
                         Color.GREEN
                     }
                 }
