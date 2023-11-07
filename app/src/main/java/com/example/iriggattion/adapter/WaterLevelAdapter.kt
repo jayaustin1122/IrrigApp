@@ -4,8 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.iriggattion.R
 import com.example.iriggattion.model.WaterLevelModel
 import com.example.iriggattion.databinding.LogsItemBinding
 
@@ -26,6 +29,7 @@ class WaterLevelAdapter: RecyclerView.Adapter<WaterLevelAdapter.ViewHolderWaterL
         var time : TextView = binding.time
         var status : TextView = binding.tvState
         var waterLevel2 : TextView = binding.tvWaterlevel
+        var image : ImageView = binding.alertImg
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderWaterLevel {
@@ -49,5 +53,23 @@ class WaterLevelAdapter: RecyclerView.Adapter<WaterLevelAdapter.ViewHolderWaterL
         holder.time.text = time
         holder.date.text = date
         holder.waterLevel2.text = water
+        when{
+            water.toInt() >= 511 ->{
+                Glide.with(this@WaterLevelAdapter.context)
+                    .load(R.drawable.alert_img)
+                    .into(binding.alertImg)
+            }
+            water.toInt() in 390..510 ->{
+                Glide.with(this@WaterLevelAdapter.context)
+                    .load(R.drawable.error_yellow)
+                    .into(binding.alertImg)
+            }
+            water.toInt() <= 389 ->{
+                Glide.with(this@WaterLevelAdapter.context)
+                    .load(R.drawable.level_img)
+                    .into(binding.alertImg)
+            }
+        }
+
     }
 }

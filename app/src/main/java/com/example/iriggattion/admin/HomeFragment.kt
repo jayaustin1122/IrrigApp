@@ -169,7 +169,7 @@ class HomeFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                     waterLevel >= 511 -> {
                         binding.waterLevelStatus.setText("High")
                         Glide.with(requireContext())
-                            .load(R.drawable.alert_img)
+                            .load(R.drawable.error_red)
                             .into(binding.imgOnOff1)
                         writeToFirebase("Irrigation Water level at High!",waterLevel)
                         requestSmsPermission()

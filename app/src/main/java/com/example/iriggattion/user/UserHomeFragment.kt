@@ -115,7 +115,7 @@ class UserHomeFragment : Fragment() {
                 val color = when {
                     waterLevel >= 511 -> {
                         Glide.with(requireContext())
-                            .load(R.drawable.alert_img)
+                            .load(R.drawable.error_red)
                             .into(binding.imgOnOff1)
                         binding.waterLevelStatus.setText("High")
                         Color.RED
