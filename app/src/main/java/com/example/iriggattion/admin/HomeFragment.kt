@@ -213,7 +213,7 @@ class HomeFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
                 val progressAnimator = ValueAnimator.ofInt(
                     binding.progressBarWaterLevel.progress,
-                    waterLevel
+                    waterLevel.coerceIn(0, 1000)
                 )
                 progressAnimator.duration = 1000
                 progressAnimator.addUpdateListener { animator ->

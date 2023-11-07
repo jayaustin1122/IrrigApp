@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_horizontal">
     <item android:id="@android:id/progress">
         <clip>
-            <vector xmlns:android="http://schemas.android.com/apk/res/android"
+            <vector
                 android:width="200dp"
                 android:height="200dp"
                 android:viewportWidth="200"
@@ -22,7 +23,7 @@
     </item>
 
     <item android:id="@android:id/background">
-        <vector xmlns:android="http://schemas.android.com/apk/res/android"
+        <vector
             android:width="200dp"
             android:height="200dp"
             android:viewportWidth="200"
